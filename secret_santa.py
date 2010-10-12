@@ -1,4 +1,5 @@
 import random
+import sys
 import unittest
 
 
@@ -46,7 +47,8 @@ class TestGenerateBuyers(unittest.TestCase):
 
 
 def test():
-    unittest.main()
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestGenerateBuyers)
+    unittest.TextTestRunner(verbosity=1).run(suite)
 
 
 def main():
@@ -55,10 +57,7 @@ def main():
 
 
 if __name__ == '__main__':
-    import sys
-
     if len(sys.argv) > 1 and sys.argv[1] == '--test':
-        del sys.argv[1]
         test()
     else:
         main()
