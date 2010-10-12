@@ -1,4 +1,5 @@
 import random
+import string
 import sys
 import unittest
 
@@ -45,6 +46,9 @@ class TestGenerateBuyers(unittest.TestCase):
         assert sorted([r[0] for r in result]) ==\
             sorted([r[1] for r in result]) == sorted(itertools.chain(*pairs))
 
+        for p in pairs:
+            assert p not in result
+
 
 def test():
     suite = unittest.TestLoader().loadTestsFromTestCase(TestGenerateBuyers)
@@ -52,8 +56,8 @@ def test():
 
 
 def main():
-    print '\n'.join(['%s -> %s' % (f, t)
-        for (f, t) in generate_buyers(list(PAIRS))])
+    print '\n'.join(['%s buys for %s' % (string.ljust(frm, 7), to)
+        for (frm, to) in generate_buyers(list(PAIRS))])
 
 
 if __name__ == '__main__':
